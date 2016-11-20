@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Twitter</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/ace-css/css/ace.min.css" rel="stylesheet">
+    
+    <!-- build:css css/main.css -->
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://abs.twimg.com/favicons/favicon.ico" />
+</head>
+
+<body ng-app="TwitterFeedApp">
+
+    <!--START :: HEADER-->
+    <header class="clearfix appHeader" id="header">
+        <div class="mainHeader" id="mainHeaderMobile">
+            <div class="col col-10 left-panel subHeaderTabs-menu" id="headerTab">
+                <div class="col col-3 center">
+                    <a href="#notificationTab" class="circle nav-icon">
+                        <i class="fa fa-bell" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col col-3 center">
+                    <a href="#messagesTab" class="circle nav-icon">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col col-3 center current">
+                    <a href="#hashTagTab" class="circle nav-icon current">
+                        <i class="fa fa-hashtag" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col col-3 center">
+                    <a href="#searchBarTab" class="circle nav-icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col col-2 left-panel">
+                <div class="col col-12 center">
+                    <div class="smithmob"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mainHeader" id="mainHeaderWeb">
+            <div class="col col-4 center right-panel mainHeaderWeb">
+                <div class="col iconWrapper" id="composeTweet">
+                    <div class="tweetmob" id="tabletView"></div>
+                    <div class="tweetweb" id="webView"></div>
+                </div>
+                <div class="col iconWrapper webHeaderTab center">
+                    <a href="#main-content-notificaton" class="circle nav-icon">
+                        <i class="fa fa-bell" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col iconWrapper webHeaderTab center">
+                    <a href="#main-content-messages" class="circle nav-icon">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col iconWrapper webHeaderTab center current">
+                    <a href="#main-content-feed" class="circle nav-icon">
+                        <i class="fa fa-hashtag" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col col-4 center middle-panel">
+                <div class="brandLogoWrapper">
+                    <a href="/" class="brand-icon">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col col-4 searchbarProfWrapper" style="text-align:right;">
+                <div class="col col-10 search" id="searchTab">
+                    <input type="text" id="search-input" class="py1" placeholder="Search">
+                    <span class="fa fa-search"></span>
+                </div>
+                <div class="col col-2 center">
+                    <div class="smithmob" id="profTabletView"></div>
+                    <div class="smithweb" id="profWebView"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subHeader" id="subHeader">
+            <div class="col col-12 left-panel" style="padding-top:8px; padding-bottom:8px; height: 46px;">
+                <div class="col col-10 right-panel subHeaderTab">
+                    <div id="searchBarTab" class="subHeaderTab-content search">
+                        <input type="text" id="search-input" class="py1" placeholder="Search">
+                        <span class="fa fa-search"></span>
+                    </div>
+                    <div id="notificationTab" class="subHeaderTab-content">
+                        <p class="text">Notification</p>
+                    </div>
+                    <div id="messagesTab" class="subHeaderTab-content">
+                        <p class="text">Messages</p>
+                    </div>
+                    <div id="hashTagTab" class="subHeaderTab-content">
+                        <p class="text">Home</p>
+                    </div>
+                </div>
+                <div class="col col-2 center right-panel">
+                    <div class="tweetmob"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--END :: HEADER-->
+
+    <!--START :: MAIN CONTENT WRAPPER-->
+    <div ng-controller="twitterFeedCtrl">
+        <!--START :: NOTIFICATION -->
+        <div id="main-content-notificaton" class="main-content main-content-wrapper">
+            <div class="flex flex-wrap">
+                <div class="col-12 summary-card-wrapper flex-auto twitter-feed-count-card">
+                    <p class="text">Notification</p>
+                </div>
+            </div>
+        </div>
+        <!--END :: NOTIFICATION -->
+        <!--START :: MESSAGES -->
+        <div id="main-content-messages" class="main-content main-content-wrapper">
+            <div class="flex flex-wrap">
+                <div class="col-12 summary-card-wrapper flex-auto twitter-feed-count-card">
+                    <p class="text">Messages</p>
+                </div>
+            </div>
+        </div>
+        <!--END :: MESSAGES -->
+        <!--START :: FEED CONTENT -->
+        <div id="main-content-feed" class="main-content main-content-wrapper">
+            <div class="flex flex-wrap">
+                <div class="col-12 summary-card-wrapper flex-auto twitter-feed-count-card">
+                    <ul class="flex flex-wrap twitter-profile-summary-collection tabs-menu">
+                        <li class="col-3 twitter-profile-summary-menu center current">
+                            <a href="#tab-1">
+                                <p class="menu-text">TWEETS</p>
+                                <p class="menu-count" ng-bind="twitterFeedData.tweets"></p>
+                            </a>
+                        </li>
+                        <li class="col-3 twitter-profile-summary-menu center">
+                            <a href="#tab-2">
+                                <p class="menu-text" id="media"></p>
+                                <p class="menu-count" ng-bind="twitterFeedData.media"></p>
+                            </a>
+                        </li>
+                        <li class="col-3 twitter-profile-summary-menu center">
+                            <a href="#tab-3">
+                                <p class="menu-text">FOLLOWINGS</p>
+                                <p class="menu-count" ng-bind="twitterFeedData.followings"></p>
+                            </a>
+                        </li>
+                        <li class="col-3 twitter-profile-summary-menu center">
+                            <a href="#tab-4">
+                                <p class="menu-text">FOLLOWERS</p>
+                                <p class="menu-count" ng-bind="twitterFeedData.followers"></p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tab">
+                <div class="flex flex-wrap feeds-card-wrapper tab-content" id="tab-1">
+                    <div class="col-12 md-col-12 flex-auto twitter-feed-card" ng-repeat="feed in twitterFeedData.feeds">
+                        <div class="sm-flex flex-center">
+                            <img ng-src="{{feed.twitterImgUrl}}" width="60" class="flex-last img-circle" />
+                            <div class="flex-auto user-feed-content-wrapper">
+                                <p class="user-feed-heading">
+                                    <span class="user-name">
+                                    <i class="fa fa-retweet retweetIcon" aria-hidden="true" ng-if="feed.twitter == 'Axel Herrmann'"></i>{{feed.twitter}}
+                                </span>
+                                    <span class="user-twtr-handler">@{{feed.twitterHandle}}</span>
+                                    <span class="feed-timestamp" ng-bind="feed.tweetTime"></span>
+                                </p>
+                                <p class="feed-text" ng-if="feed.tweet != null" ng-bind="feed.tweet"></p>
+                                <div class="video-wrapper" ng-if="feed.tweetVideoUrl != null">
+                                    <iframe id="mobileVideo" width="100%" height="180" ng-src="{{trustSrc(feed.tweetVideoUrl)}}" frameborder="0" allowfullscreen></iframe>
+                                    <iframe id="webVideo" height="315" width="100%" ng-src="{{trustSrc(feed.tweetVideoUrl)}}" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <ul class="tweet-actions">
+                                    <li class="tweet-reply">
+                                        <i class="fa fa-reply" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="tweet-like">
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="tweet-retweet">
+                                        <i class="fa fa-retweet" aria-hidden="true"></i>
+                                        <span class="retweet-counter" ng-if="feed.retweetCount != null" ng-bind="feed.retweetCount"></span>
+                                    </li>
+                                    <li class="tweet-more">
+                                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="tweet-expand">
+                                        <i class="fa fa-expand" aria-hidden="true"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-2" class="flex flex-wrap feeds-card-wrapper tab-content">
+                    <div class="col-12 md-col-12 flex-auto twitter-feed-card">
+                        <p class="text">I will show for video/photos</p>
+                    </div>
+                </div>
+                <div id="tab-3" class="flex flex-wrap feeds-card-wrapper tab-content">
+                    <div class="col-12 md-col-12 flex-auto twitter-feed-card">
+                        <p class="text">I will show followings</p>
+                    </div>
+                </div>
+                <div id="tab-4" class="flex flex-wrap feeds-card-wrapper tab-content">
+                    <div class="col-12 md-col-12 flex-auto twitter-feed-card">
+                        <p class="text">I will show followers</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--END :: FEED CONTENT -->
+    </div>
+    <!--END :: MAIN CONTENT WRAPPER-->
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

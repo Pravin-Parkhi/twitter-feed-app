@@ -1,0 +1,15 @@
+{
+  "name": "base-css",
+  "main": "base.css",
+  "author": "Brandon Himpfen",
+  "homepage": "https://github.com/brandonhimpfen/base.css",
+  "_release": "226b28e334",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "226b28e3343cbb07ed9bdc69fabd65aa357383c5"
+  },
+  "_source": "https://github.com/brandonhimpfen/base.css.git",
+  "_target": "*",
+  "_originalSource": "base-css"
+}
